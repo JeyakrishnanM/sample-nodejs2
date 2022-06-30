@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+    <p>Welcome to
+        <%= title %>
+    </p>
+    <p>
+        <table border="1">
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+            <% Object.keys(header).forEach(function(key) { %>
+                <tr>
+                    <td>
+                        <%= key %>
+                    </td>
+                    <td>
+                        <% if(key === 'cookie') { %>
+                            <%- header[key].split('; ').map(function(cookie) { return "<b>" + cookie.split('=')[0] + "</b>=" + cookie.split('=')[1] }).join('<br>') %>
+                                <% } else { %>
+                                    <%= header[key] %>
+                                        <% } %>
+                    </td>
+                </tr>
+                <% }) %>
+        </table>
+        <!--%- JSON.stringify(header) %-->
+    </p>
+    <p>
+        <table border="1">
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+            <% Object.keys(env).forEach(function(key) { %>
+                <tr>
+                    <td>
+                        <%= key %>
+                    </td>
+                    <td>
+                        <%= env[key] %>
+                    </td>
+                </tr>
+                <% }) %>
+        </table>
+        <!--%- JSON.stringify(header) %-->
+    </p>
+</body>
+
+</html>
